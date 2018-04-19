@@ -1,0 +1,10 @@
+[packages]
+
+[dev-packages]
+
+flake8 = "*"
+isort = "*"
+matplotlib = "*"
+mypy = "*"
+pytest = "*"
+pytest-socket = "*"
