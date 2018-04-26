@@ -1,28 +1,31 @@
 SHELL := /bin/bash
 
 init:
-	pip install pipenv --upgrade
-	pipenv install --dev --skip-lock
+	@echo "---> Installing pipenv..."
+	@pip install pipenv --upgrade
+	@echo "---> Installing Python packages..."
+	@pipenv install --dev
 
 isort:
-	./venv.sh isort --apply --recursive sheep tests
+	@echo "---> Sorting imports..."
+	@pipenv run isort --apply --quiet --recursive sheep tests
 
 test_flake8:
 	@echo "----> Checking flake8..."
-	@./venv.sh flake8 .
+	@pipenv run flake8 .
 
 test_isort:
 	@echo "----> Checking imports..."
-	@./venv.sh isort --check-only --quiet --recursive sheep tests || ( \
+	@pipenv run isort --check-only --quiet --recursive sheep tests || ( \
 		echo 'run `make isort` to fix' && exit 1 \
 	)
 
 test_mypy:
 	@echo "----> Running typechecks..."
-	@./venv.sh mypy .
+	@pipenv run mypy .
 
 test_unit:
 	@echo "----> Running unit tests..."
-	@./venv.sh ./test_unit.sh
+	@pipenv run ./test_unit.sh
 
 test: test_flake8 test_isort test_mypy test_unit
