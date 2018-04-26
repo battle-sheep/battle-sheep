@@ -1,10 +1,16 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+
 [packages]
 
 [dev-packages]
-
 flake8 = "*"
 isort = "*"
 matplotlib = "*"
 mypy = "*"
 pytest = "*"
 pytest-socket = "*"
+
+[requires]
+python_version = "3.6"
